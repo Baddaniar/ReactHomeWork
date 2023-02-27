@@ -1,6 +1,8 @@
 const Filter = () => {
     return(
-        <h2>filter</h2>
+        <div>
+            <input type="text" placeholder="Поиск/Фильтр"/>
+        </div>
     )
 }
 
