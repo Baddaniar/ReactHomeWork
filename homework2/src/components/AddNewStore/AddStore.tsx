@@ -1,6 +1,6 @@
 const AddStore = () => {
-    const showData: any = (data: Object, e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
+    const showData: any = (data: Object, e: any) => {
+        e.target.preventDefault()
         console.log(data)} 
     return(
         <div className="AddStore">

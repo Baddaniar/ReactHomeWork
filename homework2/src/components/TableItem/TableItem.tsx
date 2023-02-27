@@ -7,6 +7,8 @@ const TableItem: FC<IStore> = (props) => {
         <td>{props.name}</td>
         <td>{props.openTime}</td>
         <td>{props.closeTime}</td>
+        <td>{props.distanceToDelivery}</td>
+        <td>{props.isSpecial? "yes" : "no"}</td>
     </tr>
   );
 };
