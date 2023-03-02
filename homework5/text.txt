@@ -1,0 +1,19 @@
+Урок 5
+axios
+Интерсепшн необходим для поимки ошибок при работе с апи запросами.
+Пример кода запроса интерсептора он же middleware
+
+apiClient.interceptors.response.use(
+  (response) => {
+    console.log("Api", response);
+    return response;
+  },
+  (error) => {
+    console.log("Api Error", error);
+    return Promise.reject(error);
+  }
+);
+
+Методы для класса
+componentDidMount - метод реакту в который вставляют функции что должны отрабатывать перед отрисовкой компонента по типу mounted в vue
+другие такие же методы примерно так же описаны componentDidUpdate componentsWillUnmount
