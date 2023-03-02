@@ -23,11 +23,12 @@ const Todo = (props: ITodos) => {
   }
 
   return (
-    <div className="todoItem">
+    <div className={props.completed ? "todoItem done" : "todoItem"}>
+      <div className="todoAuthor">
+        <p>{userData[0].name}</p>
+        <p className="todoEmail">{userData[0].email}</p>
+      </div>
       <p className="todoTitle">{props.title}</p>
-      <p>{props.completed ? "done" : "no"}</p>
-      <p>{userData[0].name}</p>
-      <p>{userData[0].email}</p>
     </div>
   );
 };

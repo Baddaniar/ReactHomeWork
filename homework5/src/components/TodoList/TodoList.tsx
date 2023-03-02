@@ -32,6 +32,7 @@ const PostList = () => {
 
   return (
     <div>
+      <h2>Todo List</h2>
       {todos.map((todo) => <Todo key={todo.id} {...todo}/>)}
     </div>
   );
