@@ -1,0 +1,30 @@
+import { createBrowserRouter } from "react-router-dom";
+import {StockPage, MainPage, Root, OperationPage, BuySellPage} from "./routes";
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        path: "/",
+        element: <MainPage />,
+      },
+      {
+        path: "/stock",
+        element: <StockPage />,
+      },
+      {
+        path: "/operations",
+        element: <OperationPage />,
+      },
+      {
+        path: "/buysell",
+        element: <BuySellPage />,
+      },
+    ],
+  },
+]);
+
+export default router
