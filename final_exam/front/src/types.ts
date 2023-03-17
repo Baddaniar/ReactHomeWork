@@ -7,7 +7,7 @@ export interface IProducts{
     __v: Number
 }
 
-export interface IOperatiom{
+export interface IOperation{
     _id: String,
     type: String,
     name: String,

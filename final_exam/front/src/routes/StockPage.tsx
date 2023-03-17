@@ -4,11 +4,12 @@ import {fetchProducts } from '../slices/productSlice'
 
 const StockPage = () => {
     const dispatch = useAppDispatch()
-    const products = useAppSelector((state) => state.products)
+    const products = useAppSelector((state) => state.products.data)
 
     useEffect(() =>{
         dispatch(fetchProducts())
     },[])
+    
     return(
         <div>
             <h1>Склад</h1>
