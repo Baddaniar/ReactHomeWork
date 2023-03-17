@@ -1,12 +1,12 @@
+import MainPage from "../Pages/MainPage";
 import "./style.css";
-import router from "../router";
-import { RouterProvider } from "react-router-dom";
 
 const App = () => {
   return (
-    <>
-        <RouterProvider router={router} />
-    </>
+    <div>
+      <h2>hw 9</h2>
+      <MainPage />
+    </div>
   );
 };
 
