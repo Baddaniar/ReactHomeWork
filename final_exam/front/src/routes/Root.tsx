@@ -9,7 +9,6 @@ const Root = () => {
                     <Link to={'/'}>Main</Link>
                     <Link to={'/stock'}>Склад</Link>
                     <Link to={'/operations'}>Операции</Link>
-                    <Link to={'/buysell'}>Купля/Продажа</Link>
                 </nav>
             </div>
             <Outlet />

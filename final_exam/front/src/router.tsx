@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import {StockPage, MainPage, Root, OperationPage, BuySellPage} from "./routes";
+import {StockPage, MainPage, Root, OperationPage} from "./routes";
 
 
 const router = createBrowserRouter([
@@ -18,11 +18,7 @@ const router = createBrowserRouter([
       {
         path: "/operations",
         element: <OperationPage />,
-      },
-      {
-        path: "/buysell",
-        element: <BuySellPage />,
-      },
+      }
     ],
   },
 ]);

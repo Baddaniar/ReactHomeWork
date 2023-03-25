@@ -13,8 +13,8 @@ router.get("/", (req,res) => {
 })
 
 
-//Как вариант совместить продажу, покупку и добаление товара вместе как вариант. только наверное придется ифов много делать.
-//Добавление нового поста
+
+//Добавление нового товара (думаю может убрать тут количество товара и операцию и сделать так что просто добавление нового товара а покупка уже потом если что.)
 router.post("/", async (req, res) => {
     const { product_name, sell_price, buy_price,product_amount } = req.body;
     const newPost = new ReactProductsModel({ product_name, sell_price, buy_price, product_amount});
@@ -35,6 +35,38 @@ router.post("/", async (req, res) => {
 })
 
 
+//Роутер покупки продукта
+router.put("/buy/:id", async (req, res) => {
+    const id = req.params.id;
+    const {buyAmount, newBuyPice} = req.body;
+    const updatedItem = await ReactProductsModel.findById(id)
+    await ReactProductsModel.findByIdAndUpdate(id,{product_amount: updatedItem.product_amount + buyAmount, buy_price: newBuyPice})
+    const newBuyOperation = new ReactOperationModel({type: "buy", name: updatedItem.product_name, product_amount: buyAmount, product_summ: newBuyPice})
+    newBuyOperation.save((err) => {
+        if(err){
+            res.status(500).send(err)
+        }else{
+            res.status(200).send("Product bought")
+        }
+    })
+})
+
+
+//Роутер продажи продукта
+router.put("/sell/:id", async (req, res) => {
+    const id = req.params.id;
+    const {sellAmount, newSellPice} = req.body;
+    const updatedItem = await ReactProductsModel.findById(id)
+    await ReactProductsModel.findByIdAndUpdate(id,{product_amount: updatedItem.product_amount - sellAmount, sell_price: newSellPice})
+    const newBuyOperation = new ReactOperationModel({type: "sell", name: updatedItem.product_name, product_amount: sellAmount, product_summ: newSellPice})
+    newBuyOperation.save((err) => {
+        if(err){
+            res.status(500).send(err)
+        }else{
+            res.status(200).send("Product sold")
+        }
+    })
+})
 
 
 router.delete("/:id", async (req, res) => {
@@ -49,7 +81,7 @@ router.delete("/:id", async (req, res) => {
                 if (err) {
                     res.status(500).send(err);
                 } else {
-                    res.status(200).send(deletedItem);
+                    res.status(200).send("Product Deleted");
                 }
             });
         }

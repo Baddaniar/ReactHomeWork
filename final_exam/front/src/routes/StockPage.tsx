@@ -1,19 +1,12 @@
-import{useAppDispatch, useAppSelector} from '../hooks'
-import { useEffect } from 'react'
-import {fetchProducts } from '../slices/productSlice'
+import ProductTable from "../components/ProductTable.tsx/ProductTable"
 
 const StockPage = () => {
-    const dispatch = useAppDispatch()
-    const products = useAppSelector((state) => state.products.data)
 
-    useEffect(() =>{
-        dispatch(fetchProducts())
-    },[])
     
     return(
         <div>
             <h1>Склад</h1>
-            {products.map((product) => <p>{product.product_name}</p>)}
+            <ProductTable />
         </div>
     )
 }
