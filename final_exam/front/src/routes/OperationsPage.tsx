@@ -6,7 +6,7 @@ const OperationPage = () =>{
 
     return(
         <div>
-            <h2>Operations</h2>
+            <h2>Операции</h2>
             <OperationTable />
         </div>
     )

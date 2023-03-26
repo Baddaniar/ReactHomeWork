@@ -21,7 +21,7 @@ const operationSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchOperations.fulfilled, (state, action) => {
-        state.data = action.payload
+        state.data = action.payload.reverse()
     });
   },
 });

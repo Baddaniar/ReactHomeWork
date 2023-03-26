@@ -34,7 +34,7 @@ const ModalBuyProduct = (props: any) => {
         newBuyPice: parseInt(price),
       })
       .then(() => alert("Покупка совершена"))
-      .then(() => dispatch(fetchProducts()).then(() => dispatch(fetchCash())));
+      .then(() => dispatch(fetchProducts()).then(() => dispatch(fetchCash())).then(props.close));
   };
   return (
     <div>
@@ -59,9 +59,9 @@ const ModalBuyProduct = (props: any) => {
           onChange={(e) => setAmount(e.target.value)}
         />
         <input disabled placeholder="Итого" value={NaN ? 0 : summ} />
-        <button>Купить</button>
+        <button disabled={parseInt(summ) > cashAmount}>Купить</button>
       </form>
-      <input type="button" value="отмена" />
+      <input type="button" value="отмена" onClick={props.close} />
     </div>
   );
 };

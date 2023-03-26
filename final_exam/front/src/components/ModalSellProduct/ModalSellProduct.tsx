@@ -34,7 +34,7 @@ const ModalSellProduct = (props: any) => {
         newSellPice: parseInt(price),
       })
       .then(() => alert("Продажа совершена"))
-      .then(() => dispatch(fetchProducts()).then(() => dispatch(fetchCash())));
+      .then(() => dispatch(fetchProducts()).then(() => dispatch(fetchCash())).then(props.close));
   };
   return (
     <div>
@@ -62,7 +62,7 @@ const ModalSellProduct = (props: any) => {
         <input disabled placeholder="Итого" value={NaN ? 0 : summ} />
         <button>Продать</button>
       </form>
-      <input type="button" value="отмена" />
+      <input type="button" value="отмена" onClick={props.close}/>
     </div>
   );
 };

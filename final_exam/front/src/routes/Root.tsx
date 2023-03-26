@@ -5,7 +5,7 @@ const Root = () => {
         <div>
             <div>
                 <nav>
-                    <Link to={'/'}>Main</Link>
+                    <Link to={'/'}>Главная</Link>
                     <Link to={'/stock'}>Склад</Link>
                     <Link to={'/operations'}>Операции</Link>
                 </nav>

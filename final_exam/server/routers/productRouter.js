@@ -16,20 +16,13 @@ router.get("/", (req,res) => {
 
 //Добавление нового товара (думаю может убрать тут количество товара и операцию и сделать так что просто добавление нового товара а покупка уже потом если что.)
 router.post("/", async (req, res) => {
-    const { product_name, sell_price, buy_price,product_amount } = req.body;
-    const newPost = new ReactProductsModel({ product_name, sell_price, buy_price, product_amount});
-    const newOperation = new ReactOperationModel({type: "buy", name: product_name, product_amount: product_amount, product_summ: buy_price})
+    const { product_name, sell_price, buy_price } = req.body;
+    const newPost = new ReactProductsModel({ product_name, sell_price, buy_price, product_amount: 0});
     newPost.save((err) => {
         if (err) {
             res.status(500).send(err);
         } else {
-            newOperation.save((err) => {
-                if (err) {
-                    res.status(500).send(err);
-                } else {
-                    res.status(200).send("Product Added");
-                }
-            })
+            res.status(200).send("Product Added");
         }
     });
 })
