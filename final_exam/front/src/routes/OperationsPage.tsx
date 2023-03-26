@@ -1,12 +1,13 @@
 import OperationTable from "../components/OperationTable/OperationTable"
+import "../styles/operations.css"
 
 
 
 const OperationPage = () =>{
 
     return(
-        <div>
-            <h2>Операции</h2>
+        <div className="page">
+            <p className="page-name">Операции</p>
             <OperationTable />
         </div>
     )

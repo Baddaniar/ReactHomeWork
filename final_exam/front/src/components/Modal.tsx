@@ -20,7 +20,7 @@ const Modal = ({ children }: { children: ReactElement }) => {
     };
   }, []);
 
-  return createPortal(<div>{children}</div>, elRef.current);
+  return createPortal(<div className="modal">{children}</div>, elRef.current);
 };
 
 export default Modal;

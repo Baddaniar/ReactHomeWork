@@ -22,7 +22,7 @@ const ModalAddNewProduct = (props: any) => {
       .then(() => dispatch(fetchProducts()).then(props.close));
   };
   return (
-    <div>
+    <div className="modal-content">
       <p>Добавить новый продукт</p>
       <form onSubmit={handleClick}>
         <input

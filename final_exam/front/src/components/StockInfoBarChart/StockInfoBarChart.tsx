@@ -14,7 +14,7 @@ const StockInfoBarChart = () => {
         datasets: [
           {
             label: "Количество товаров",
-            backgroundColor: "rgb(255, 99, 132)",
+            backgroundColor: "#112D4E",
             borderColor: "rgb(0,0,255)",
             data: productsData.map((pr) => pr.product_amount),
           },

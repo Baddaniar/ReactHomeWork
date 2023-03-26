@@ -1,18 +1,24 @@
-import {Outlet, Link} from 'react-router-dom'
+import { Outlet, Link } from "react-router-dom";
 
 const Root = () => {
-    return(
-        <div>
-            <div>
-                <nav>
-                    <Link to={'/'}>Главная</Link>
-                    <Link to={'/stock'}>Склад</Link>
-                    <Link to={'/operations'}>Операции</Link>
-                </nav>
-            </div>
-            <Outlet />
-        </div>
-    )
-}
+  return (
+    <div>
+      <header>
+        <nav>
+          <Link to={"/"}>Главная</Link>
+          <Link to={"/stock"}>Склад</Link>
+          <Link to={"/operations"}>Операции</Link>
+        </nav>
+      </header>
 
-export default Root
+      <Outlet />
+      {/* <footer>
+        <div>
+            <p>Футер для сайта</p>
+        </div>
+      </footer> */}
+    </div>
+  );
+};
+
+export default Root;

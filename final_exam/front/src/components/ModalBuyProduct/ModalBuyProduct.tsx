@@ -37,7 +37,7 @@ const ModalBuyProduct = (props: any) => {
       .then(() => dispatch(fetchProducts()).then(() => dispatch(fetchCash())).then(props.close));
   };
   return (
-    <div>
+    <div className="modal-content">
       <p>Купить продукт</p>
       <form onSubmit={handleClick}>
         <input

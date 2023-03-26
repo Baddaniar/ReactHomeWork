@@ -3,8 +3,8 @@ import StockInfoBarChart from "../components/StockInfoBarChart/StockInfoBarChart
 
 const MainPage = () => {
   return (
-    <div>
-      <h1>Главная страница</h1>
+    <div className="page">
+      <p className="page-name">Главная страница</p>
       <StockInfo />
       <div style={{ maxWidth: 500 }}>
         <StockInfoBarChart />
