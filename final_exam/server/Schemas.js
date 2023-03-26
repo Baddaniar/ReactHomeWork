@@ -7,6 +7,10 @@ const ReactProductsScheme = new Schema({
     product_amount: Number,
 })
 
+const ReactCashAmount = new Schema({
+    cash_amount: Number
+})
+
 const ReactOperationScheme = new Schema({
     type: String,
     name: String,
@@ -28,4 +32,5 @@ const ReactOperationScheme = new Schema({
 module.exports = {
     ReactOperationScheme,
     ReactProductsScheme,
+    ReactCashAmount
 };

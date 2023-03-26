@@ -3,7 +3,6 @@ import {Outlet, Link} from 'react-router-dom'
 const Root = () => {
     return(
         <div>
-            <h1>router</h1>
             <div>
                 <nav>
                     <Link to={'/'}>Main</Link>

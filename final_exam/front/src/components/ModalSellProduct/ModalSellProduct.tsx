@@ -1,12 +1,11 @@
 import axios from "axios";
 import { FormEvent, useState, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks";
-import { fetchProducts, fetchCash } from "../../slices/productSlice";
+import { fetchCash, fetchProducts } from "../../slices/productSlice";
 
-const ModalBuyProduct = (props: any) => {
+const ModalSellProduct = (props: any) => {
   const dispatch = useAppDispatch();
-  const cashAmount = useAppSelector((state) => state.products.cashAmount);
-  const sellingProduct = useAppSelector((state) =>
+  const buyingProduct = useAppSelector((state) =>
     state.products.data.filter((product) => product._id === props._id)
   );
   const [price, setPrice] = useState("");
@@ -14,10 +13,11 @@ const ModalBuyProduct = (props: any) => {
   const [summ, setSumm] = useState("");
 
   function UpdateData() {
-    if (sellingProduct.length !== 0) {
-      setPrice(sellingProduct[0].buy_price.toString());
+    if (buyingProduct.length !== 0) {
+      setPrice(buyingProduct[0].sell_price.toString());
     }
   }
+
   useEffect(() => {
     UpdateData();
   }, []);
@@ -29,41 +29,42 @@ const ModalBuyProduct = (props: any) => {
   const handleClick = (e: FormEvent) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8080/products/buy/` + sellingProduct[0]._id, {
-        buyAmount: parseInt(amount),
-        newBuyPice: parseInt(price),
+      .put(`http://localhost:8080/products/sell/` + buyingProduct[0]._id, {
+        sellAmount: parseInt(amount),
+        newSellPice: parseInt(price),
       })
-      .then(() => alert("Покупка совершена"))
+      .then(() => alert("Продажа совершена"))
       .then(() => dispatch(fetchProducts()).then(() => dispatch(fetchCash())));
   };
   return (
     <div>
-      <p>Купить продукт</p>
+      <p>Продать продукт</p>
       <form onSubmit={handleClick}>
         <input
           placeholder="Product name"
           disabled
-          value={sellingProduct[0].product_name}
+          value={buyingProduct[0].product_name}
         />
         <input
-          type={"number"}
           placeholder="Product price"
           min={1}
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
         <input
-          placeholder="Product amount"
+          type={"number"}
+          max={buyingProduct[0].product_amount}
           min={1}
+          placeholder="Product amount"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
         <input disabled placeholder="Итого" value={NaN ? 0 : summ} />
-        <button>Купить</button>
+        <button>Продать</button>
       </form>
       <input type="button" value="отмена" />
     </div>
   );
 };
 
-export default ModalBuyProduct;
+export default ModalSellProduct;

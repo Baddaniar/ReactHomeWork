@@ -1,5 +1,5 @@
 const express = require("express");
-const { ReactProductsModel, ReactOperationModel } = require("../Models");
+const { ReactProductsModel, ReactOperationModel, ReactCashAmountModel } = require("../Models");
 const router = express.Router();
 
 router.get("/", (req,res) => {
@@ -35,11 +35,14 @@ router.post("/", async (req, res) => {
 })
 
 
-//Роутер покупки продукта
+//Роутер покупки продукта + изменение банка
 router.put("/buy/:id", async (req, res) => {
     const id = req.params.id;
+    const cashId = "641f4db8091580309f35ee9f"
     const {buyAmount, newBuyPice} = req.body;
     const updatedItem = await ReactProductsModel.findById(id)
+    const updatedBank = await ReactCashAmountModel.findById(cashId)
+    await ReactCashAmountModel.findByIdAndUpdate(cashId, {cash_amount: updatedBank.cash_amount - (buyAmount * newBuyPice)})
     await ReactProductsModel.findByIdAndUpdate(id,{product_amount: updatedItem.product_amount + buyAmount, buy_price: newBuyPice})
     const newBuyOperation = new ReactOperationModel({type: "buy", name: updatedItem.product_name, product_amount: buyAmount, product_summ: newBuyPice})
     newBuyOperation.save((err) => {
@@ -55,8 +58,11 @@ router.put("/buy/:id", async (req, res) => {
 //Роутер продажи продукта
 router.put("/sell/:id", async (req, res) => {
     const id = req.params.id;
+    const cashId = "641f4db8091580309f35ee9f"
     const {sellAmount, newSellPice} = req.body;
     const updatedItem = await ReactProductsModel.findById(id)
+    const updatedBank = await ReactCashAmountModel.findById(cashId)
+    await ReactCashAmountModel.findByIdAndUpdate(cashId, {cash_amount: updatedBank.cash_amount + (sellAmount * newSellPice)})
     await ReactProductsModel.findByIdAndUpdate(id,{product_amount: updatedItem.product_amount - sellAmount, sell_price: newSellPice})
     const newBuyOperation = new ReactOperationModel({type: "sell", name: updatedItem.product_name, product_amount: sellAmount, product_summ: newSellPice})
     newBuyOperation.save((err) => {

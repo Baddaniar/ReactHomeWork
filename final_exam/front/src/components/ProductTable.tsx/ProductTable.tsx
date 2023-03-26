@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useEffect } from "react";
-import { fetchProducts } from "../../slices/productSlice";
+import { fetchCash, fetchProducts } from "../../slices/productSlice";
 import ProductTableRow from "../ProductTableRow/ProductTableRow";
 
 const ProductTable = () => {
@@ -9,6 +9,7 @@ const ProductTable = () => {
 
   useEffect(() => {
     dispatch(fetchProducts());
+    dispatch(fetchCash())
   }, []);
   return (
     <table>

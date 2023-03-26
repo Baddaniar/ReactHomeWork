@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const operationRouter = require("./routers/operationsRouter");
 const productRouter = require("./routers/productRouter")
+const cashRouter = require('./routers/cashAmount')
 const cors = require("cors");
 
 const app = express();
@@ -20,6 +21,7 @@ mongoose.connect(
       console.log("server started");
       app.use("/operations", operationRouter);
       app.use("/products", productRouter);
+      app.use("/cash", cashRouter);
       app.listen(8080);
     }
   }
