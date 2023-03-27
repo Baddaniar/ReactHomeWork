@@ -1,10 +1,11 @@
 import axios from "axios";
 import { FormEvent, useState } from "react";
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { fetchProducts, fetchCash } from "../../slices/productSlice";
 
 const ModalAddNewProduct = (props: any) => {
   const dispatch = useAppDispatch();
+  const products = useAppSelector((state) => state.products.data)
   const [name, setName] = useState("");
   const [sellPrice, setSellPrice] = useState("");
   const [buyPrice, setBuyPrice] = useState("");
@@ -52,10 +53,25 @@ const ModalAddNewProduct = (props: any) => {
             onChange={(e) => setBuyPrice(e.target.value)}
           />
         </label>
-
-        <button className="modal-Btn" disabled={name.length < 2 || isNaN(parseInt(sellPrice)) || isNaN(parseInt(buyPrice))}>Добавить</button>
+        {products.some((product) => product.product_name.toLowerCase() === name.toLowerCase()) ? <p>Продукт с таким название уже существует</p> : null}
+        <button
+          className="modal-Btn"
+          disabled={
+            name.length < 2 ||
+            isNaN(parseInt(sellPrice)) ||
+            isNaN(parseInt(buyPrice)) ||
+            products.some((product) => product.product_name.toLowerCase() === name.toLowerCase())
+          }
+        >
+          Добавить
+        </button>
       </form>
-      <input className="modal-Btn" type="button" value="отмена" onClick={props.close} />
+      <input
+        className="modal-Btn"
+        type="button"
+        value="отмена"
+        onClick={props.close}
+      />
     </div>
   );
 };
