@@ -15,5 +15,53 @@
     margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; 
+    width: 400px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.modal-name{
+    font-size: 20px;
+    font-weight: 900;
+    font-family: 'Roboto', sans-serif;
+}
+
+.modal-content form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}   
+
+.modal-content label{
+    font-family: 'Roboto', sans-serif;
+    color: #112D4E;
+}
+
+
+
+.modal-content input{
+    width: 150px;
+}
+
+.modal-Btn{
+    background-color: #112D4E;
+    color: #F9F7F7;
+    font-family: 'Roboto', sans-serif;
+    width: 100px !important;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.modal-Btn:disabled{
+    background-color: #94a2b1;
+}
+
+.summ-p{
+    font-size: 16px;
+    font-weight: 900;
+    font-family: 'Roboto', sans-serif;
 }

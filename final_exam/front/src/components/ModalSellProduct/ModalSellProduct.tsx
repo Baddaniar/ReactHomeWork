@@ -34,35 +34,48 @@ const ModalSellProduct = (props: any) => {
         newSellPice: parseInt(price),
       })
       .then(() => alert("Продажа совершена"))
-      .then(() => dispatch(fetchProducts()).then(() => dispatch(fetchCash())).then(props.close));
+      .then(() =>
+        dispatch(fetchProducts())
+          .then(() => dispatch(fetchCash()))
+          .then(props.close)
+      );
   };
   return (
     <div className="modal-content">
-      <p>Продать продукт</p>
+      <p className="modal-name">Продать продукт</p>
       <form onSubmit={handleClick}>
-        <input
-          placeholder="Product name"
-          disabled
-          value={buyingProduct[0].product_name}
-        />
-        <input
-          placeholder="Product price"
-          min={1}
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-        <input
-          type={"number"}
-          max={buyingProduct[0].product_amount}
-          min={1}
-          placeholder="Product amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-        />
-        <input disabled placeholder="Итого" value={NaN ? 0 : summ} />
-        <button>Продать</button>
+        <label>
+          Наименовае продукта:
+          <input
+            placeholder="Наименование продутка"
+            disabled
+            value={buyingProduct[0].product_name}
+          />
+        </label>
+        <label>
+          Цена продажи:
+          <input
+            placeholder="Цена продажи"
+            min={1}
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+        </label>
+        <label>
+          Количество товара:
+          <input
+            type={"number"}
+            max={buyingProduct[0].product_amount}
+            min={1}
+            placeholder="Количество товара"
+            onChange={(e) => setAmount(e.target.value)}
+          />
+        </label>
+        <p className="summ-p">Итого: {isNaN(parseInt(summ)) ? 0 : summ} </p>
+        {buyingProduct[0].product_amount < parseInt(amount)  ? <p>Недостаточно товара</p> : null}
+        <button className="modal-Btn" disabled={isNaN(parseInt(amount)) || buyingProduct[0].product_amount < parseInt(amount)}>Продать</button>
       </form>
-      <input type="button" value="отмена" onClick={props.close}/>
+      <input className="modal-Btn" type="button" value="отмена" onClick={props.close} />
     </div>
   );
 };

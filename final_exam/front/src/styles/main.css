@@ -69,3 +69,30 @@ nav a{
     font-weight: 900;
     font-family: 'Roboto', sans-serif;
 }
+
+.add-new-btn{
+    background-color: #112D4E;
+    width: 200px;
+    height: 40px;
+    color: #F9F7F7;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px;
+}
+
+.chart-container{
+    width: 600px;
+}
+
+.btn-cell input{
+    background-color: #112D4E;
+    color: #F9F7F7;
+    font-family: 'Roboto', sans-serif;
+    width: 70px !important;
+    height: 30px;
+}
+
+.stock-info{
+    color: #112D4E;
+    font-size: 16px;
+    font-weight: 800;
+}

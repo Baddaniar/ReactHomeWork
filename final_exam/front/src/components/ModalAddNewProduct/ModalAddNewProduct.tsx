@@ -9,7 +9,6 @@ const ModalAddNewProduct = (props: any) => {
   const [sellPrice, setSellPrice] = useState("");
   const [buyPrice, setBuyPrice] = useState("");
 
-
   const handleClick = (e: FormEvent) => {
     e.preventDefault();
     axios
@@ -23,29 +22,40 @@ const ModalAddNewProduct = (props: any) => {
   };
   return (
     <div className="modal-content">
-      <p>Добавить новый продукт</p>
+      <p className="modal-name">Добавить новый продукт</p>
       <form onSubmit={handleClick}>
-        <input
-          placeholder="Наименование товара"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type={"number"}
-          placeholder="Цена продажи"
-          min={1}
-          value={sellPrice}
-          onChange={(e) => setSellPrice(e.target.value)}
-        />
-        <input
-          placeholder="Цена покупки"
-          min={1}
-          value={buyPrice}
-          onChange={(e) => setBuyPrice(e.target.value)}
-        />
-        <button>Добавить</button>
+        <label>
+          {" "}
+          Наименование товара :{" "}
+          <input
+            placeholder="Введите наименование"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </label>
+        <label>
+          Цена продажи:{" "}
+          <input
+            type={"number"}
+            placeholder="Введите цену продажи"
+            min={1}
+            value={sellPrice}
+            onChange={(e) => setSellPrice(e.target.value)}
+          />
+        </label>
+        <label>
+          Цена покупки:{" "}
+          <input
+            placeholder="Введите цену продажи"
+            min={1}
+            value={buyPrice}
+            onChange={(e) => setBuyPrice(e.target.value)}
+          />
+        </label>
+
+        <button className="modal-Btn" disabled={name.length < 2 || isNaN(parseInt(sellPrice)) || isNaN(parseInt(buyPrice))}>Добавить</button>
       </form>
-      <input type="button" value="отмена" onClick={props.close} />
+      <input className="modal-Btn" type="button" value="отмена" onClick={props.close} />
     </div>
   );
 };

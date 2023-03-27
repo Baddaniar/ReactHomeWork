@@ -11,7 +11,7 @@ const ProductTableRow: FC<IProducts> = (props) => {
       <td>{props.product_amount}</td>
       <td>{props.sell_price}</td>
       <td>{props.buy_price}</td>
-      <td><BtnBuyProduct _id={props._id}/><BtnSellProduct _id={props._id}/><BtnDeleteProduct _id={props._id}/></td>
+      <td className="btn-cell"><BtnBuyProduct _id={props._id}/><BtnSellProduct _id={props._id}/><BtnDeleteProduct _id={props._id}/></td>
     </tr>
   );
 };

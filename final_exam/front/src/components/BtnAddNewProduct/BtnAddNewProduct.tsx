@@ -9,7 +9,7 @@ const BtnAddNewProduct = () => {
   };
   return (
     <div>
-      <input type="button" value="Добавить новый продукт" onClick={() => setShowModal(true)}/>
+      <input className="add-new-btn" type="button" value="Добавить новый продукт" onClick={() => setShowModal(true)}/>
       {showModal ? (
         <Modal>
           <ModalAddNewProduct close={closeModal}/>
